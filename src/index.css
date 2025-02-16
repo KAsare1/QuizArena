@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for view-transition */
+@supports (view-transition: auto) {
+    /* Define view transition styles here */
+    .view-transition {
+      view-transition-name: 'hero';
+    }
+  }
+
+
+@layer base {
+    * {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}
