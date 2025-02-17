@@ -24,6 +24,7 @@ function QuizLogo() {
       >
         Play
       </button>
+      <p className="text-lg text-gray-600 mt-2">Kindly note that the web version is still in developement.</p>
     </div>
   );
 }
