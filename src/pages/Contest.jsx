@@ -23,6 +23,7 @@ function Contest() {
     setTranscript(newTranscript);
   };
 
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [botAnswers, setBotAnswers] = useState({});
 
   useEffect(() => {

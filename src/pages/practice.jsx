@@ -18,6 +18,8 @@ function PracticeContest() {
   const handleTranscriptChange = (newTranscript) => {
     setTranscript(newTranscript);
   };
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   // Fetch questions from the API
   useEffect(() => {
     fetch(`${BASE_URL}/first_round/quiz`)
