@@ -15,6 +15,10 @@ function Contest() {
   const [currentContestantIndex, setCurrentContestantIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);  // Track whose turn it is
 
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
   const handleTranscriptChange = (newTranscript) => {
     setTranscript(newTranscript);
   };

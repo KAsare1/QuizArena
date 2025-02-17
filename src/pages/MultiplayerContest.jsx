@@ -40,6 +40,7 @@ const MultiplayerContest = () => {
         localVideoTrack: null,
         client,
     };
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
 
     useEffect(() => {
         const initializeRTM = async () => {

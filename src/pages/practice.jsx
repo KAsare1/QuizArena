@@ -9,6 +9,8 @@ function PracticeContest() {
   const [transcript, setTranscript] = useState('');
   const navigate = useNavigate(); // Initialize the navigate hook
 
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const handleGoBack = () => {
     navigate(-1); // Go back to the previous page
   };

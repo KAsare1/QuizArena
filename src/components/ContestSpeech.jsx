@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Microphone2, MicrophoneSlash, Refresh2 } from 'iconsax-react';
 
@@ -10,11 +10,20 @@ const SecMicrophone = ({ onTranscriptChange, showTranscript = true }) => {
         browserSupportsSpeechRecognition
     } = useSpeechRecognition();
 
-    React.useEffect(() => {
-        if (transcript) {
+    const [inputText, setInputText] = useState("");
+
+    useEffect(() => {
+        if (transcript && listening) {
+            setInputText(transcript); // Update input field when speaking
             onTranscriptChange(transcript);
         }
-    }, [transcript, onTranscriptChange]);
+    }, [transcript, listening, onTranscriptChange]);
+
+    useEffect(() => {
+        if (!listening) {
+            onTranscriptChange(inputText); // Update transcript when typing
+        }
+    }, [inputText, listening, onTranscriptChange]);
 
     if (!browserSupportsSpeechRecognition) {
         return <span>Browser doesn't support speech recognition.</span>;
@@ -28,19 +37,31 @@ const SecMicrophone = ({ onTranscriptChange, showTranscript = true }) => {
         SpeechRecognition.stopListening();
     };
 
+    const handleReset = () => {
+        resetTranscript();
+        setInputText("");
+    };
+
     return (
         <div className='items-center'>
             {showTranscript && (
                 <div className="bg-[#9adfb1] rounded-3xl self-center justify-center p-4">
                     <div className="text-xl font-normal">Your Answer</div>
                     <div className="bg-white p-5 rounded-2xl">
-                        {transcript || "Speak something..."}
+                        <input
+                            type="text"
+                            value={inputText}
+                            onChange={(e) => setInputText(e.target.value)}
+                            placeholder="Speak or type your answer..."
+                            className="w-full border-none outline-none"
+                            disabled={listening} // Disable typing when speech recognition is active
+                        />
                     </div>
                 </div>
             )}
             <p className='text-center'>Microphone: {listening ? 'on' : 'off'}</p>
 
-            <div className='flex self-center justify-center'>
+            <div className='flex self-center justify-center gap-4'>
                 {listening ? (
                     <Microphone2
                         size="32"
@@ -64,7 +85,7 @@ const SecMicrophone = ({ onTranscriptChange, showTranscript = true }) => {
                     size="32"
                     color="#4f5b6e"
                     variant="Bold"
-                    onClick={resetTranscript}
+                    onClick={handleReset}
                     aria-label="Reset Transcript"
                     className="cursor-pointer"
                 />

@@ -11,6 +11,7 @@ import PracticeSetup from "./pages/PracticeSetup";
 import MultiplayerContest from "./pages/MultiplayerContest";
 import PracticeContest from './pages/practice';
 import SettingsPage from './pages/Settings';
+import TournamentComingSoon from './pages/underConstruction';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/setup-practice" element={<PracticeSetup/>} /> 
         <Route path="/practice" element={<PracticeContest/>} />
         <Route path='/menu-settings' element={<SettingsPage/>} />
+        <Route path="/coming-soon" element={<TournamentComingSoon />} />
       </Routes>
     </Router>
     </>
