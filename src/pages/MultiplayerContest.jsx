@@ -41,6 +41,8 @@ const MultiplayerContest = () => {
         client,
     };
 
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
+
     useEffect(() => {
         const initializeRTM = async () => {
             const client = AgoraRTM.createInstance(options.appId);
@@ -63,7 +65,7 @@ const MultiplayerContest = () => {
     }, []);
 
     const options = {
-        appId: 'e2e07ac75a95411a9fcc062d9f004e17',
+        appId:import.meta.env.VITE_APP_ID,
         channel: localStorage.getItem('channelName') || '',
         token: null,
         uid: Math.floor(Math.random() * 1000000),
@@ -172,7 +174,7 @@ const MultiplayerContest = () => {
         // Create WebSocket connection when component mounts
         const roomId = options.channel || 'default-room';
     
-        const ws = new WebSocket(`wss://9dr0x3rr-8000.euw.devtunnels.ms/multiplayer/ws/${roomId}`);
+        const ws = new WebSocket(`${BASE_URL}/multiplayer/ws/${roomId}`);
         
         ws.onopen = () => {
             console.log('WebSocket Connected');
