@@ -16,9 +16,11 @@ function PracticeContest() {
   const handleTranscriptChange = (newTranscript) => {
     setTranscript(newTranscript);
   };
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   // Fetch questions from the API
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/first_round/quiz')
+    fetch(`${BASE_URL}/first_round/quiz`)
       .then((response) => response.json())
       .then((data) => {
         console.log('Fetched questions:', data);

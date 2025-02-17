@@ -11,9 +11,10 @@ function SurvivalContest() {
   const [timeLeft, setTimeLeft] = useState(30);
   const [transcript, setTranscript] = useState(''); // Initialize the navigate hook
 
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
     useEffect(() => {
-      fetch('http://127.0.0.1:8000/first_round/quiz')
+      fetch(`${BASE_URL}/first_round/quiz`)
         .then((response) => response.json())
         .then((data) => {
           console.log('Fetched questions:', data);
