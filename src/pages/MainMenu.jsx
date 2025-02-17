@@ -97,7 +97,7 @@ function MainMenu() {
     </button>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-10">
 
-  <button className="bg-[#E8FBFF] rounded-[21px] shadow p-4 flex flex-col items-center" onClick={() => handleButtonClick('/setup-tournament')}>
+  <button className="bg-[#E8FBFF] rounded-[21px] shadow p-4 flex flex-col items-center" onClick={() => handleButtonClick('/coming-soon')}>
       <div className="text-black text-2xl font-semibold mb-4">Tournament</div>
       <Cup size="32" color="#555555" className='w-[80px] h-[80px]'/>
     </button>

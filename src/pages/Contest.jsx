@@ -15,6 +15,10 @@ function Contest() {
   const [currentContestantIndex, setCurrentContestantIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);  // Track whose turn it is
 
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
   const handleTranscriptChange = (newTranscript) => {
     setTranscript(newTranscript);
   };
@@ -30,7 +34,7 @@ function Contest() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/first_round/quiz');
+        const response = await fetch(`${BASE_URL}/first_round/quiz`);
         const data = await response.json();
         setQuestions(data.questions || []);
       } catch (error) {
@@ -98,7 +102,7 @@ function Contest() {
     };
   
     try {
-      const response = await fetch("http://127.0.0.1:8000/agent/custom", {
+      const response = await fetch(`${BASE_URL}/agent/custom`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -145,7 +149,7 @@ function Contest() {
     const userAnswer = transcript;
     const correctAnswer = questions[currentQuestionIndex]?.Answer;
 
-    fetch('http://127.0.0.1:8000/first_round/check-answer-sec', {
+    fetch(`${BASE_URL}/first_round/check-answer-sec`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

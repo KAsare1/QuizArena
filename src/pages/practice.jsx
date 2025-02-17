@@ -9,6 +9,8 @@ function PracticeContest() {
   const [transcript, setTranscript] = useState('');
   const navigate = useNavigate(); // Initialize the navigate hook
 
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const handleGoBack = () => {
     navigate(-1); // Go back to the previous page
   };
@@ -18,7 +20,7 @@ function PracticeContest() {
   };
   // Fetch questions from the API
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/first_round/quiz')
+    fetch(`${BASE_URL}/first_round/quiz`)
       .then((response) => response.json())
       .then((data) => {
         console.log('Fetched questions:', data);
